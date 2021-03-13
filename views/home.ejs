@@ -1,0 +1,67 @@
+<% layout('/layouts/boilerplate') %>
+
+    <!-- header starts -->
+    <header>
+        <div class="overlay"></div>
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+            <source src="/assets/background.mp4" type="video/mp4">
+        </video>
+        <div class="container h-100">
+            <div class="d-flex h-100 text-center align-items-center">
+                <div class="w-100 text-white">
+                    <h1 class="display-3">Donation Nation</h1>
+                    <p class="lead mb-0">Doing Nothing is Not An Option Of Our Life</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- header ends -->
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+        <div class="col">
+            <div class="card h-100">
+                <img src="/assets/donate.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Donate</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This content is a little bit longer.</p>
+                </div>
+
+                <!-- Payment Button -->
+                <% if(currentUser) {%>
+                    <a href=" https://test.instamojo.com/@donation_nation_21/" rel="im-checkout" data-text="Donate Now"
+                        data-css-style="color:#ffffff; background:#1273de; width:300px; border-radius:30px"
+                        data-layout="vertical"></a>
+                    <script src="https://js.instamojo.com/v1/button.js"></script>
+                    <% }%>
+
+                        <!-- Payment Button -->
+
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="/assets/volunteer.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Volunteer</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <img src="/assets/sponsorship.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sponsor</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content. This card has even longer content than the first to show that equal height
+                        action.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
