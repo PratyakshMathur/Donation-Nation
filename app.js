@@ -97,7 +97,7 @@ app.get('/home', (req, res) => {
 
 app.get('/aboutUs', (req, res) => {
 
-    res.render('aboutUS', { who: "About Us" })
+    res.render('aboutUs', { who: "About Us" })
 })
 app.get('/blog', (req, res) => {
     res.render('blog', { who: "Blogs" })
