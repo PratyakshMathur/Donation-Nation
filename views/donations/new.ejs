@@ -3,56 +3,80 @@
 
 
 
-<div class="row py-3">
-    <h1 class="text-center">New Donation</h1>
-    <div class="col-6 offset-3">
-        <form action="/donate" method="POST" class="validated-form" novalidate>
-            <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="donation[title]" required>
-                <div class="valid-feedback">
-                    Looks good!
+    <div class="row py-3">
+        <h1 class="text-center">New Donation</h1>
+        <div class="col-6 offset-3">
+            <form action="/donate" method="POST" class="validated-form" novalidate enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="donation[title]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="donation[location]" required>
-                <div class="valid-feedback">
-                    Looks good!
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="donation[location]" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
+
+                
+
+                <!-- <input type="file" name='image' id="" multiple> -->
+
+                <!-- <div class="mb-3">
                 <label class="form-label" for="image">Image Url</label>
                 <input class="form-control" type="text" id="image" name="donation[image]" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="price">Donation Request Price</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="price-label">Rs</span>
-                    <input type="text" class="form-control" id="price" placeholder="000" aria-label="price"
-                        aria-describedby="price-label" name="donation[price]" required>
+            </div> -->
+                <div class="mb-3">
+                    <label class="form-label" for="price">Donation Request Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">Rs</span>
+                        <input type="text" class="form-control" id="price" placeholder="000" aria-label="price"
+                            aria-describedby="price-label" name="donation[price]" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description" name="donation[description]" required></textarea>
-                <div class="valid-feedback">
-                    Looks good!
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="donation[description]"
+                        required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-success">Create Donation</button>
-                <button class="btn btn-success"><a href="/donate" class="text-light">Back to All Donations</a></button>
-                
-            </div>
-        </form>
-        
+                <!-- <div class="mb-3">
+                    <div class="form-file custom-file">
+                        <input type="file" class="form-file-input" id="image" name="image" multiple>
+                        <label class="form-file-label" for="image">
+                            <span class="form-file-text custom-file-label">Choose image(s)...</span>
+                            <span class="form-file-button">Browse</span>
+                        </label>
+                    </div>
+                </div> -->
+
+                <div class="mb-3">
+                    <div class="form-file custom-file">
+                        <label for="image" class="form-label ">Add Images</label>
+                        <input class="form-control form-file-input" type="file" id="image" name="image" multiple>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-success">Create Donation</button>
+                    <button class="btn btn-success"><a href="/donate" class="text-light">Back to All
+                            Donations</a></button>
+
+                </div>
+            </form>
+
+        </div>
     </div>
-</div>

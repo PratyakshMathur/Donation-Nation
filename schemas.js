@@ -4,10 +4,11 @@ module.exports.donationSchema = Joi.object({
     donation : Joi.object({
         title: Joi.string().required(),
         price: Joi.number().required().min(10),
-        image: Joi.string().required(),
+        // image: Joi.string().required(),
         location: Joi.string().required(),
         description: Joi.string().required(),
-    }).required()
+    }).required(),
+    deleteImages: Joi.array()
 })
 
 module.exports.reviewSchema = Joi.object({

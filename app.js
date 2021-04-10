@@ -56,8 +56,6 @@ app.use((req, res, next) => {
     next();
 })
 
-
-
 app.use('/', userRoutes);
 app.use('/donate', donationRo);
 app.use('/donate/:id/reviews', reviews);
@@ -66,9 +64,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
 // ----------------------------------------------------------------------------------------------------//
-// 
 mongoose.connect('mongodb://localhost:27017/donation-nation', {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -76,19 +72,12 @@ mongoose.connect('mongodb://localhost:27017/donation-nation', {
     useFindAndModify: false
 });
 
-
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {
     console.log("Database Connected")
 });
 
 // ----------------------------------------------------------------------------------------------------//
-
-
-
-// ----------------------------------------------------------------------------------------------------//
-
-
 
 app.get('/', (req, res) => {
     res.render('home', { who: "Home" })
@@ -106,16 +95,12 @@ app.get('/blog', (req, res) => {
 })
 
 
-
 app.get('/contact', (req, res) => {
     res.render('contact', { who: "Contact Us" })
 })
 
-
 // ----------------------------------------------------------------------------------------------------//
 
-
-// -------------------------------------------------------
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 })
@@ -126,8 +111,6 @@ app.use((err, req, res, next) => {
     if (!err.message) err.message = 'Oh No, Something went wrong'
     res.status(statusCode).render('error', { who: "Error", err });
 })
-
-// ----------------------------------------------------
 
 // ----------------------------------------------------------------------------------------------------//
 app.listen(3000, () => {

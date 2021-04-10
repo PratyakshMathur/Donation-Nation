@@ -2,60 +2,73 @@
 
 
 
-<div class="row">
-    <h1 class="text-center">Edit Donation</h1>
-    <div class="col-4 offset-4">
-        <form action="/donate/<%=donation._id%>?_method=PUT" method="POST" class="validated-form" novalidate>
-            <div class="mb-3">
-                <label class="form-label" for="title">Title</label>
-                <input class="form-control" type="text" id="title" name="donation[title]"
-                    value="<%=donation.title %>" required>
+    <div class="row">
+        <h1 class="text-center">Edit Donation</h1>
+        <div class="col-4 offset-4">
+            <form action="/donate/<%=donation._id%>?_method=PUT" method="POST" class="validated-form" novalidate
+                enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" type="text" id="title" name="donation[title]"
+                        value="<%=donation.title %>" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="location">Location</label>
-                <input class="form-control" type="text" id="location" name="donation[location]"
-                    value="<%=donation.location %>" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Location</label>
+                    <input class="form-control" type="text" id="location" name="donation[location]"
+                        value="<%=donation.location %>" required>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="donation[image]"
-                    value="<%=donation.image %>" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="price">Donation Price</label>
-                <div class="input-group">
-                    <span class="input-group-text" id="price-label">Rs </span>
-                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
-                        aria-describedby="price-label" name="donation[price]" value="<%=donation.price %>" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="price">Donation Price</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">Rs </span>
+                        <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                            aria-describedby="price-label" name="donation[price]" value="<%=donation.price %>" required>
                         <div class="valid-feedback">
                             Looks good!
                         </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="mb-3">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" type="text" id="description"
-                    name="donation[description]" required><%= donation.description%></textarea>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="text" id="description" name="donation[description]"
+                        required><%= donation.description%></textarea>
                     <div class="valid-feedback">
                         Looks good!
                     </div>
-            </div>
-            <div class="mb-3 px-5">
-                <button class="btn btn-info">Update donation</button>
-                <button class="btn btn-info"><a href="/donate/<%= donation._id%>" class="text-light">Back To donation</a></button>
-            </div>
-        </form>
-        
+                </div>
+                <div class="mb-3">
+                    <div class="form-file custom-file">
+                        <label for="image" class="form-label ">Add More Images</label>
+                        <input class="form-control form-file-input" type="file" id="image" name="image" multiple>
+                    </div>
+                </div>
 
+
+                <div class="mb-3">
+                    <% donation.images.forEach(function(img, i) {  %>
+                    <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%=i%>" name="deleteImages[]" value="<%=img.filename%>">
+                    </div>
+                    <label for="image-<%=i%>">Delete?</label>
+                    <% })%>
+                </div>
+
+                <div class="mb-3 px-5">
+                    <button class="btn btn-info">Update donation</button>
+                    <button class="btn btn-info"><a href="/donate/<%= donation._id%>" class="text-light">Back To
+                            donation</a></button>
+                </div>
+            </form>
+
+
+        </div>
     </div>
-</div>

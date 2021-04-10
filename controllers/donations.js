@@ -1,4 +1,5 @@
 const Donations = require('../models/donations');
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
     const donation = await Donations.find({});
@@ -10,9 +11,14 @@ module.exports.renderNewForm = (req, res) => {
 }
 
 module.exports.createDonation=async (req, res, next) => {
+
     const donation = new Donations(req.body.donation);
+    
+    donation.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+
     donation.author = req.user._id;
     await donation.save();
+    console.log(donation);
     req.flash('success', 'Successfully made a new donation!')
     res.redirect(`/donate/${donation._id}`)
 }
@@ -47,7 +53,20 @@ module.exports.renderEditForm=async (req, res) => {
 
 module.exports.updateDonation=async (req, res) => {
     const { id } = req.params;
+    console.log(req.body)
     const donation = await Donations.findByIdAndUpdate(id, { ...req.body.donation });
+    const imgs=req.files.map(f => ({ url: f.path, filename: f.filename }))
+    donation.images.push(...imgs);
+    await donation.save()
+
+    if (req.body.deleteImages) {
+        for (let filename of req.body.deleteImages) {
+            await cloudinary.uploader.destroy(filename);
+        }
+       await donation.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+        console.log(donation)
+    }
+
     req.flash('success', 'Successfully updated donation!')
     res.redirect(`/donate/${donation._id}`)
 
