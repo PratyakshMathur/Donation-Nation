@@ -8,6 +8,7 @@ const map = new mapboxgl.Map({
     
 });
 
+map.addControl(new mapboxgl.NavigationControl());
 
 new mapboxgl.Marker()
     .setLngLat(donation.geometry.coordinates)

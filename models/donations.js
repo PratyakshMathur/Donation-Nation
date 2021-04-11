@@ -11,6 +11,8 @@ ImageSchema.virtual('thumbnail').get(function () {
     return this.url.replace('/upload', '/upload/w_200');
 });
 
+const opts={ toJSON: {virtuals:true}};
+
 const DonationsSchema = new Schema({
     title: String,
     images: [ImageSchema],
@@ -38,8 +40,16 @@ const DonationsSchema = new Schema({
             ref: 'Review'
         }
     ]
-}
+},opts
 );
+
+DonationsSchema.virtual('properties.popUpMarkup').get(function () {
+    return `
+    <strong><a href="/donate/${this._id}">${this.title}</a></strong>
+    <p>${this.description.substring(0,20)}....</p>
+    `
+});
+
 
 DonationsSchema.post('findOneAndDelete', async function (doc) {
     if (doc) {

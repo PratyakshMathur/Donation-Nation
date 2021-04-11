@@ -21,8 +21,8 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 const seedDB = async () => {
     await Donations.deleteMany({});
-    for (let i = 0; i < 10; i++) {
-        const random1000 = Math.floor(Math.random() * 1000);
+    for (let i = 0; i < 200; i++) {
+        const random1000 = Math.floor(Math.random() * 100);
         const price = Math.floor(Math.random() * 20) + 100;
         const camp = new Donations({
             author:'604b7f3279aa402c8c2fed42',
@@ -33,7 +33,10 @@ const seedDB = async () => {
             price,
             geometry:{
                   "type" : "Point",
-                  "coordinates" : [ 73.19536770545, 26.9710515219598 ] 
+                  "coordinates" : [ 
+                    cities[random1000].longitude,
+                    cities[random1000].latitude,
+                   ] 
                 },
             images:[
                 {
