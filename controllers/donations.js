@@ -1,5 +1,8 @@
 const Donations = require('../models/donations');
 const { cloudinary } = require("../cloudinary");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const mapBoxToken = process.env.MAPBOX_TOKEN;
+const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 
 module.exports.index = async (req, res) => {
     const donation = await Donations.find({});
@@ -12,7 +15,14 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createDonation=async (req, res, next) => {
 
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.donation.location,
+        limit: 1
+    }).send()
     const donation = new Donations(req.body.donation);
+    donation.geometry=geoData.body.features[0].geometry;
+
+   
     
     donation.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
 

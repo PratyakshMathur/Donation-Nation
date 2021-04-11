@@ -3,49 +3,62 @@
 
 
 
-<h1 class="text-center">All Donations</h1>
-<div class="d-flex align-items-center justify-content-center">
-    <a href="/donate/new" >Create Donations</a>
-</div>
-
-
-
-
-
-<article class="col-md-12">
-    <!-- BLOG CARDS -->
-    
-    <div class="cards-1 section-gray">
-        <div class="container">
-            <div class="row">
-                <% for (let donate of donation){%>
-                <div class="col-md-4">
-                    <div class="card card-blog">
-                        <div class="card-image">
-                            <a href="#"> <img class="img"
-                                    src="<%=donate.images[0].url%>">
-                                <div class="card-caption"> <%= donate.title %> </div>
-                            </a>
-                            <div class="ripple-cont"></div>
-                        </div>
-                        <div class="table">
-                            <h6 class="category text-info"><%= donate.location%></h6>
-                            <p class="card-description"> <%= donate.description %>
-
-
-                            </p>
-                            <a class="btn btn-primary" href="/donate/<%=donate._id%>">View <%=donate.title%></a>
-                        </div>
-                    </div>
-                             
-                   
-                </div>
-
-                <% }%>
-            </div>
-        </div>
+    <h1 class="text-center">All Donations</h1>
+    <div class="d-flex align-items-center justify-content-center">
+        <a href="/donate/new">Create Donations</a>
     </div>
 
-   
 
-</article>
+
+
+
+    <article class="col-md-12">
+        <!-- BLOG CARDS -->
+
+        <div class="cards-1 section-gray">
+            <div class="container">
+                <div class="row">
+                    <% for (let donate of donation){%>
+                        <div class="col-md-4">
+
+                            <div class="card card-blog">
+                                <div class="card-image">
+                                    <%if(donate.images.length) {%>
+                                    <a href="#"> <img class="img" src="<%=donate.images[0].url%>">
+                                    <% }else {%>
+                                        <a href="#"> <img class="img" src="https://res.cloudinary.com/djhtpxujm/image/upload/v1618125723/Donation_Nation/wic6fpbysb5h5bmcpzgd.jpg">
+                                        <% } %>
+                                        <div class="card-caption">
+                                            <%= donate.title %>
+                                        </div>
+                                    </a>
+                                    <div class="ripple-cont"></div>
+                                </div>
+                                <div class="table">
+                                    <h6 class="category text-info">
+                                        <%= donate.location%>
+                                    </h6>
+                                    <p class="card-description">
+                                        <%= donate.description %>
+
+
+                                    </p>
+                                    <a class="btn btn-primary" href="/donate/<%=donate._id%>">View <%=donate.title%></a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <% }%>
+                </div>
+            </div>
+        </div>
+
+
+
+    </article>
+
+
+
+
