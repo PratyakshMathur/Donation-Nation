@@ -28,7 +28,6 @@ module.exports.createDonation=async (req, res, next) => {
 
     donation.author = req.user._id;
     await donation.save();
-    console.log(donation);
     req.flash('success', 'Successfully made a new donation!')
     res.redirect(`/donate/${donation._id}`)
 }

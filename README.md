@@ -15,8 +15,11 @@
 - Open terminal in the project folder and type the following command <code> npm i</code>
 - After successful installation, then type <code>npm i -g nodemon </code>
 
-### All set to run the code
-
+### Step 4:
 - Open the PowerShell and type <code>mongod </code> to run the database
-- Then in the project's location, open cmd and type <code> nodemon app.js </code> to run the app.
+- Copy the given keys and token in the .env file
+- Open terminal in the project folder and type the following command <code> node seeds/index.js</code>
+
+### All set to run the code
+- In the project's location, open cmd and type <code> nodemon app.js </code> to run the app.
 - The app will start running at [localhost:3000](localhost:3000)
