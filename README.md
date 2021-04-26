@@ -23,3 +23,5 @@
 ### All set to run the code
 - In the project's location, open cmd and type <code> nodemon app.js </code> to run the app.
 - The app will start running at [localhost:3000](localhost:3000)
+
+## This is a project made by 5 Btech students under Capstone 1 
