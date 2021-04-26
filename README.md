@@ -25,3 +25,5 @@
 - The app will start running at [localhost:3000](localhost:3000)
 
 ## This is a project made by 5 Btech students under Capstone 1 
+### Screenshots of our site
+![ScreenShot](https://raw.github.com/PratyakshMathur/Donation-Nation/main/public/assets/ss1.png)
