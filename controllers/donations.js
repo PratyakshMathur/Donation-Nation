@@ -62,10 +62,16 @@ module.exports.renderEditForm=async (req, res) => {
 
 module.exports.updateDonation=async (req, res) => {
     const { id } = req.params;
-    console.log(req.body)
+    const geoData = await geocoder
+    .forwardGeocode({
+      query: req.body.donation.location,
+      limit: 1,
+    }).send();
+    // console.log(req.body)
     const donation = await Donations.findByIdAndUpdate(id, { ...req.body.donation });
     const imgs=req.files.map(f => ({ url: f.path, filename: f.filename }))
     donation.images.push(...imgs);
+    donation.geometry = geoData.body.features[0].geometry;
     await donation.save()
 
     if (req.body.deleteImages) {
