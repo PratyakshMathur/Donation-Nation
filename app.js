@@ -26,7 +26,20 @@ const donationRo = require('./routes/donationRo');
 const reviews = require('./routes/reviews');
 const user = require('./models/user');
 
+const MongoDBStore=require("connect-mongo")(session);
+const dbUrl='mongodb://localhost:27017/donation-nation';
+const store=new MongoDBStore({
+    url:dbUrl,
+    secret: 'thisshouldbeabettersecret!',
+    touchAfter: 24 * 60 * 60
+})
+
+store.on("error", function (e) {
+    console.log("Session Error",e)
+})
+
 const sessionConfig = {
+    store,
     secret: 'thisshouldbeabettersecret!',
     resave: false,
     saveUninitialized: true,
@@ -65,7 +78,9 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // ----------------------------------------------------------------------------------------------------//
-mongoose.connect('mongodb://localhost:27017/donation-nation', {
+
+// 'mongodb://localhost:27017/donation-nation'
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -117,3 +132,7 @@ app.listen(3000, () => {
     console.log("LISTENING ON PORT 3000")
 })
 // ----------------------------------------------------------------------------------------------------//
+
+
+
+
